@@ -1,0 +1,11 @@
+{
+  "name": "dropdown",
+  "description": "Basic dropdown menu built on component/menu",
+  "dependencies": {
+    "ericgj/menu": "*"
+  },
+  "development": {},
+  "scripts": [
+    "index.js"
+  ]
+}

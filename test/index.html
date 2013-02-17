@@ -1,0 +1,37 @@
+<!DOCTYPE 5>
+<html>
+  <head>
+    <title>Menu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="../build/build.css" />
+    <style>
+
+      .dropdown {
+        text-decoration: none;
+        border: 1px solid gray;
+        padding: 5px 8px;
+        margin: 3px;
+      }
+
+      .dropdown:hover {
+        text-decoration: underline;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Menu</h1>
+    <a href="#" class="dropdown below">Dropdown menu - below</a>
+    <a href="#" class="dropdown right">Dropdown menu - right</a>
+    <script src="../build/build.js"></script>
+    <script>
+      var Dropdown = require('dropdown');
+      var dropdown = Dropdown('.dropdown.below');
+      dropdown.add('one').add('two').add('three');
+      dropdown.add('count', function(){
+        console.log('number of menu items: %s', dropdown.length());
+      });
+
+    </script>
+  </body>
+</html>
