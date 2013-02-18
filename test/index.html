@@ -1,7 +1,7 @@
 <!DOCTYPE 5>
 <html>
   <head>
-    <title>Menu</title>
+    <title>Dropdown</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="../build/build.css" />
     <style>
@@ -20,7 +20,7 @@
     </style>
   </head>
   <body>
-    <h1>Menu</h1>
+    <h1>Dropdown</h1>
     <a href="#" class="dropdown below">Dropdown menu - below</a>
     <a href="#" class="dropdown right">Dropdown menu - right</a>
     <script src="../build/build.js"></script>
@@ -32,6 +32,12 @@
         console.log('number of menu items: %s', dropdown.length());
       });
 
+      var dropdown2 = Dropdown('.dropdown.right');
+      dropdown2.moveRight();
+      dropdown2.add('one').add('two').add('count');
+      dropdown2.on('count', function(){
+        console.log('number of menu items: %s', dropdown2.length());
+      });
     </script>
   </body>
 </html>

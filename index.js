@@ -4,14 +4,16 @@ module.exports = Dropdown;
 
 function Dropdown(ref){
   if (!(this instanceof Dropdown)) return new Dropdown(ref);
-  var anchor = toElem(ref);
+  Menu.bind(this)();  // call super
+
+  this.anchor = toElem(ref);
 
   // position menu below anchor
-  this.moveBelow(anchor);
+  this.moveBelow();
 
   // toggle menu on clicking anchor
   var menu = this;
-  anchor.onclick = function(e){
+  this.anchor.onclick = function(e){
     e.preventDefault();
     e.stopPropagation();
     menu.toggle();
@@ -23,10 +25,35 @@ function Dropdown(ref){
   return this;
 };
 
+Dropdown.prototype.__proto__ = Menu.prototype;
 
-Dropdown.prototype = new Menu;
+/**
+ * Move menu below reference element
+ *
+ * @return {Dropdown}
+ * @api public
+ */
 
-Dropdown.prototype.load = function(){};
+Dropdown.prototype.moveBelow = function(){
+  var ref = this.anchor;
+  return this.moveTo(ref.offsetLeft,
+                     ref.offsetTop + ref.offsetHeight
+                    );
+};
+
+/**
+ * Move menu to the right of reference element
+ *
+ * @return {Dropdown}
+ * @api public
+ */
+
+Dropdown.prototype.moveRight = function(){
+  var ref = this.anchor;
+  return this.moveTo(ref.offsetLeft + ref.offsetWidth,
+                     ref.offsetTop
+                    );
+};
 
 /**
  * Return element from selector string
