@@ -1,6 +1,11 @@
 {
   "name": "dropdown",
   "description": "Basic dropdown menu built on component/menu",
+  "version": "0.0.2",
+  "keywords": [
+    "menu",
+    "ui"
+  ],
   "dependencies": {
     "ericgj/menu": "*"
   },
