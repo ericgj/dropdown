@@ -1,0 +1,55 @@
+<!DOCTYPE 5>
+<html>
+  <head>
+    <title>Dropdown integrated into buttonbar</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="../build/build.css" />
+    <style>
+
+      .buttonset > *.selected {
+        background-color: gray;
+        color: white;
+      }
+
+      .menu a {
+        text-decoration: none;
+        border: 1px solid gray;
+        padding: 5px 8px;
+        margin: 3px;
+      }
+
+      .menu a:hover {
+        text-decoration: underline;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Dropdown integrated into a buttonset</h1>
+    <p>Note that you should <tt>component build --dev</tt> to run this page</p>
+    <div class="buttonset-container"></div>
+    <script src="../build/build.js"></script>
+    <script>
+      var ButtonSet = require('ericgj-buttonset')
+        , Dropdown = require('dropdown');
+
+      var bset = ButtonSet('.buttonset-container'); 
+      bset.add('A').add('B').add('C');
+      bset.add('dropdown', '>>');
+      document.querySelector('.buttonset-container').appendChild(bset.el);
+
+      var anchor = bset.getButtonElement('dropdown');
+      var menu = Dropdown(anchor);
+      menu.moveRight();
+      menu.add('one').add('two').add('three');
+
+      bset.on('deselect', function(b,name){
+        if ('dropdown'==name) menu.deselect()
+      });
+      menu.on('select', function(){ 
+        bset.set('dropdown'); 
+      });
+
+    </script>
+  </body>
+</html>

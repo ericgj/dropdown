@@ -1,4 +1,5 @@
 var Menu = require('menu')
+  , event = require('event')
 
 module.exports = Dropdown;
 
@@ -13,15 +14,12 @@ function Dropdown(ref){
 
   // toggle menu on clicking anchor
   var menu = this;
-  this.anchor.onclick = function(e){
+  event.bind(this.anchor, 'click', function(e){
     e.preventDefault();
     e.stopPropagation();
     menu.toggle();
-  };
+  });
   
-  // deselect all items on selecting
-  this.on('select', this.deselect.bind(this));
-
   return this;
 };
 

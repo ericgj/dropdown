@@ -7,9 +7,12 @@
     "ui"
   ],
   "dependencies": {
+    "component/event": "*",
     "ericgj/menu": "*"
   },
-  "development": {},
+  "development": {
+    "ericgj/buttonset": "*"
+  },
   "scripts": [
     "index.js"
   ]
