@@ -23,6 +23,8 @@
     <h1>Dropdown</h1>
     <a href="#" class="dropdown below">Dropdown menu - below</a>
     <a href="#" class="dropdown right">Dropdown menu - right</a>
+    <hr />
+    <a href="#" class="dropdown delay">Dropdown menu - delayed attach</a>
     <script src="../build/build.js"></script>
     <script>
       var Dropdown = require('dropdown');
@@ -38,6 +40,11 @@
       dropdown2.on('count', function(){
         console.log('number of menu items: %s', dropdown2.length());
       });
+
+      var dropdown3 = Dropdown();
+      dropdown3.add('red').add('blue').add('green');
+      dropdown3.attachTo('.dropdown.delay');
+
     </script>
   </body>
 </html>

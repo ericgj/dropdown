@@ -7,6 +7,15 @@ function Dropdown(ref){
   if (!(this instanceof Dropdown)) return new Dropdown(ref);
   Menu.bind(this)();  // call super
 
+  if (ref) this.attachTo(ref); 
+
+  return this;
+};
+
+Dropdown.prototype.__proto__ = Menu.prototype;
+
+Dropdown.prototype.attachTo = function(ref){
+  
   this.anchor = toElem(ref);
 
   // position menu below anchor
@@ -19,11 +28,10 @@ function Dropdown(ref){
     e.stopPropagation();
     menu.toggle();
   });
-  
+
   return this;
 };
 
-Dropdown.prototype.__proto__ = Menu.prototype;
 
 /**
  * Move menu below reference element
