@@ -18,14 +18,13 @@ Dropdown.prototype.attachTo = function(ref){
   
   this.anchor = toElem(ref);
 
-  // position menu below anchor
-  this.moveBelow();
-
+  // position menu below anchor and
   // toggle menu on clicking anchor
   var menu = this;
   event.bind(this.anchor, 'click', function(e){
     e.preventDefault();
     e.stopPropagation();
+    menu.moveBelow();
     menu.toggle();
   });
 
