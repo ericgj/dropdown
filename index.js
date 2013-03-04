@@ -7,6 +7,7 @@ function Dropdown(ref){
   if (!(this instanceof Dropdown)) return new Dropdown(ref);
   Menu.bind(this)();  // call super
 
+  this.moveBelow();
   if (ref) this.attachTo(ref); 
 
   return this;
@@ -16,15 +17,15 @@ Dropdown.prototype.__proto__ = Menu.prototype;
 
 Dropdown.prototype.attachTo = function(ref){
   
-  this.anchor = toElem(ref);
-
-  // position menu below anchor and
-  // toggle menu on clicking anchor
+  ref = toElem(ref);
+  
+  // position menu relative to ref and
+  // toggle menu on clicking ref
   var menu = this;
-  event.bind(this.anchor, 'click', function(e){
+  event.bind(ref, 'click', function(e){
     e.preventDefault();
     e.stopPropagation();
-    menu.moveBelow();
+    if (menu.positioning) menu.positioning(ref);
     menu.toggle();
   });
 
@@ -40,10 +41,12 @@ Dropdown.prototype.attachTo = function(ref){
  */
 
 Dropdown.prototype.moveBelow = function(){
-  var ref = this.anchor;
-  return this.moveTo(ref.offsetLeft,
-                     ref.offsetTop + ref.offsetHeight
-                    );
+  var self = this;
+  this.positioning = function(ref){
+    return self.moveTo(ref.offsetLeft,
+                       ref.offsetTop + ref.offsetHeight
+                      );
+  };
 };
 
 /**
@@ -54,10 +57,12 @@ Dropdown.prototype.moveBelow = function(){
  */
 
 Dropdown.prototype.moveRight = function(){
-  var ref = this.anchor;
-  return this.moveTo(ref.offsetLeft + ref.offsetWidth,
-                     ref.offsetTop
-                    );
+  var self = this;
+  this.positioning = function(ref){
+    return this.moveTo(ref.offsetLeft + ref.offsetWidth,
+                       ref.offsetTop
+                      );
+  };
 };
 
 /**
